@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
     src: url(${fontURL});
   }
   body {
-    font-family: 'NanumGothic', consolas;
+    font-family: 'NanumGothic', consolas;    
   }
 `;
 

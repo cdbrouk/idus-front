@@ -1,12 +1,21 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import GlobalStyles from './styles/GlobalStyles';
+import PageTemplate from './components/base/PageTemplate';
+import Header from './components/main/Header';
+import InputPage from './pages/InputPage';
 
 function App() {
   return (
-    <div className="App">
+    <PageTemplate>
       <GlobalStyles />
-      <p>idus frontend</p>
-    </div>
+      <Header />
+      <Switch>
+        <Route path="/" component={InputPage} exact />
+        <Route path="/card" component={InputPage} />
+        <Route path="/input" component={InputPage} />
+      </Switch>
+    </PageTemplate>
   );
 }
 
