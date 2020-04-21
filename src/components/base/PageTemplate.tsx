@@ -21,12 +21,6 @@ const Block = styled.div`
   ${media.tablet} {
     width: calc(100% - 2rem);
   }
-  ${media.mobilelarge} {
-    width: calc(100% - 2rem);
-  }
-  ${media.mobilesmall} {
-    width: calc(100% - 2rem);
-  }
 `;
 
 interface PageTemplateProps {

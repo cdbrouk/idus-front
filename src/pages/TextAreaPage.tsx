@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Input from '../idus_input/Input';
+import IdusTextArea from '../modules/IdusTextArea';
 
 const Block = styled.div`
   display: flex;
@@ -9,12 +9,12 @@ const Block = styled.div`
   height: 100%;
 `;
 
-const InputPage = () => {
+const TextAreaPage = () => {
   return (
     <Block>
-      <Input placeholder="hello" width={500} />
+      <IdusTextArea placeholder="기본 상태 입니다." />
     </Block>
   );
 };
 
-export default InputPage;
+export default TextAreaPage;

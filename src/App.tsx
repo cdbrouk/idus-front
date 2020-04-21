@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import GlobalStyles from './styles/GlobalStyles';
 import PageTemplate from './components/base/PageTemplate';
 import Header from './components/main/Header';
-import InputPage from './pages/InputPage';
+import TextAreaPage from './pages/TextAreaPage';
 
 function App() {
   return (
@@ -11,9 +11,9 @@ function App() {
       <GlobalStyles />
       <Header />
       <Switch>
-        <Route path="/" component={InputPage} exact />
-        <Route path="/card" component={InputPage} />
-        <Route path="/input" component={InputPage} />
+        <Route path="/" component={TextAreaPage} exact />
+        <Route path="/card" component={TextAreaPage} />
+        <Route path="/textarea" component={TextAreaPage} />
       </Switch>
     </PageTemplate>
   );

@@ -35,8 +35,8 @@ const Header = ({ location: { pathname } }: RouteComponentProps) => {
           Card
         </LinkItem>
       </PageLink>
-      <PageLink to="/input">
-        <LinkItem selected={pathname === '/input'}>Input</LinkItem>
+      <PageLink to="/textarea">
+        <LinkItem selected={pathname === '/textarea'}>TextArea</LinkItem>
       </PageLink>
     </Block>
   );

@@ -7,8 +7,6 @@ const media = {
   xlarge: mediaQuery(1440),
   laptop: mediaQuery(1024),
   tablet: mediaQuery(768),
-  mobilelarge: mediaQuery(425),
-  mobilesmall: mediaQuery(320),
 };
 
 export default media;
