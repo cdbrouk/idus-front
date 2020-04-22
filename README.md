@@ -13,7 +13,7 @@ yarn (or npm install)
 yarn start
 ```
 
-## Statck
+## Stack
 
 - react
 - typescript
@@ -23,20 +23,32 @@ yarn start
 
 Inherits textarea form
 
+```js
+import IdusTextArea from './modules/IdusTextArea';
+```
+
 ## Props
 
 ### `placeholder` : string
 
 > `textarea`의 placeholder와 동일
 
-### `width` : number
+### `width` : number (px)
 
-> 가로 크기 입력 (최소값 500px)
+> 가로 크기 입력 (min - 500px, default: 100%)
 
-### `height` : number
+### `height` : number (px)
 
-> 세로 크기 입력 (최소값 5rem);
+> 세로 크기 입력 (min - 5rem, default: 5rem);
 
 ### `maxLength` : number
 
-> 최대 글자수 설정 (기본값 10)
+> 최대 글자수 설정 (default: 10)
+
+### `disabled` : boolean
+
+> 비활성화 상태 (default: false)
+
+### `readOnly` : boolean
+
+> 읽기전용 상태, Save Button 비활성화 (default: false)

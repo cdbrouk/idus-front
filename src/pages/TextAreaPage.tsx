@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import IdusTextArea from '../modules/IdusTextArea';
+// import IdusTextArea from '../modules/IdusTextArea/IdusTextArea';
 
 const Block = styled.div`
   display: flex;
@@ -9,10 +10,23 @@ const Block = styled.div`
   height: 100%;
 `;
 
+const TextAreaBlock = styled.div`
+  height: auto;
+  margin-bottom: 1rem;
+`; // 화면 UI 상 공백 유지용
+
 const TextAreaPage = () => {
   return (
     <Block>
-      <IdusTextArea placeholder="기본 상태 입니다." />
+      <TextAreaBlock>
+        <IdusTextArea placeholder="기본 상태 입니다." />
+      </TextAreaBlock>
+      <TextAreaBlock>
+        <IdusTextArea placeholder="비활성화 상태입니다" disabled />
+      </TextAreaBlock>
+      <TextAreaBlock>
+        <IdusTextArea placeholder="읽기전용 상태입니다" readOnly />
+      </TextAreaBlock>
     </Block>
   );
 };

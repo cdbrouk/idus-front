@@ -1,15 +1,18 @@
 /* eslint-disable @typescript-eslint/indent */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import media from '../styles/media';
+import media from '../../styles/media';
 
 interface TextAreaProps {
   placeholder?: string;
   width?: number;
   height?: number;
   maxLength?: number;
+  disabled?: boolean;
+  readOnly?: boolean;
 }
 
+// TextArea와 SaveButton까지 감싸는 Block Component
 const Block = styled.div`
   display: flex;
   min-width: 500px;
@@ -22,6 +25,7 @@ const Block = styled.div`
   position: relative;
 `;
 
+// TextArea와 남은 글자수 표시를 감싸는 Block Component
 const TextAreaBlock = styled.div`
   display: flex;
   position: relative;
@@ -30,27 +34,57 @@ const TextAreaBlock = styled.div`
   width: ${(props: TextAreaProps) =>
     props.width ? `${props.width}px` : '100%'};
   :focus-within {
-    width: ${(props: TextAreaProps) =>
-      props.width ? `${props.width - 200}px` : '85%'};
+    width: ${(props: TextAreaProps) => {
+      if (props.readOnly) {
+        return '100%';
+      }
+      if (props.width) {
+        return `${props.width - 200}px`;
+      }
+      return '85%';
+    }};
     min-width: 300px;
     ${media.xlarge} {
-      width: ${(props: TextAreaProps) =>
-        props.width ? `${props.width - 200}px` : '80%'};
+      width: ${(props: TextAreaProps) => {
+        if (props.readOnly) {
+          return '100%';
+        }
+        if (props.width) {
+          return `${props.width - 200}px`;
+        }
+        return '80%';
+      }};
     }
     ${media.tablet} {
-      width: ${(props: TextAreaProps) =>
-        props.width ? `${props.width - 200}px` : '70%'};
+      width: ${(props: TextAreaProps) => {
+        if (props.readOnly) {
+          return '100%';
+        }
+        if (props.width) {
+          return `${props.width - 200}px`;
+        }
+        return '70%';
+      }};
     }
   }
 `;
 
+// TextArea Component
 const TextArea = styled.textarea`
   font-family: 'NanumGothic';
   font-size: 1.5rem;
   resize: none;
   width: 100%;
+  border-color: ${(props: TextAreaProps) =>
+    (props.disabled && '#EC8A89') || (props.readOnly && '#008080')};
+
+  ::placeholder {
+    color: ${(props: TextAreaProps) =>
+      (props.disabled && '#EC8A89') || (props.readOnly && '#008080')};
+  }
 `;
 
+// 남은 글자수 표시 Tag
 const WordCount = styled.h1`
   font-size: 0.7rem;
   color: gray;
@@ -60,6 +94,7 @@ const WordCount = styled.h1`
   bottom: 5px;
 `;
 
+// 저장버튼 Component
 const SaveButton = styled.div`
   display: flex;
   justify-content: center;
@@ -78,14 +113,22 @@ const IdusTextArea = ({
   width,
   height,
   maxLength = 10,
+  disabled = false,
+  readOnly = false,
 }: TextAreaProps) => {
   const [value, setValue] = useState<string>('');
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [wordCount, setWordCount] = useState<number>(maxLength);
+
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length > maxLength)
       setValue(e.target.value.substring(0, maxLength));
     else setValue(e.target.value);
+  };
+
+  const onFocus = () => {
+    if (readOnly) return;
+    setIsFocus(true);
   };
 
   useEffect(() => {
@@ -94,19 +137,21 @@ const IdusTextArea = ({
 
   return (
     <Block width={width} height={height}>
-      <TextAreaBlock width={width}>
+      <TextAreaBlock width={width} readOnly={readOnly}>
         <TextArea
           placeholder={placeholder}
+          disabled={disabled}
+          readOnly={readOnly}
           value={value}
           onChange={(e) => onChangeValue(e)}
-          onFocus={() => setIsFocus(true)}
+          onFocus={onFocus}
           onBlur={() => setIsFocus(false)}
         />
         <WordCount>{wordCount}</WordCount>
       </TextAreaBlock>
 
       {isFocus && (
-        <SaveButton onMouseDown={() => console.log('saved')}>Save</SaveButton>
+        <SaveButton onMouseDown={() => console.log('do save')}>Save</SaveButton>
       )}
     </Block>
   );
