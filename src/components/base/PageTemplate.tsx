@@ -6,7 +6,8 @@ const Block = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f5f7f7;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   width: 1800px;
   margin: auto;
   ${media.xxlarge} {

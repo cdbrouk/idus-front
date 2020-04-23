@@ -1,26 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IdusCardProps } from './IdusCard';
 
 const img = require('../../assets/images/idus.png'); /** Test용 이미지 */
 
-export interface IdusCardProps {
-  score?: number;
-  content?: string;
-}
-
 const Block = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 300px;
+  flex-direction: row;
+  width: 500px;
   height: auto;
-  min-width: 300px;
+  min-width: 500px;
   border: 0.5px solid #bbbbbb;
 `;
 
 const FlexibleImage = styled.img`
   display: flex;
   position: relative;
-  width: 100%;
+  width: 30%;
   ::before {
     display: block;
     padding-top: 120%;
@@ -44,34 +40,8 @@ const LabelTitleBlock = styled.div`
   height: auto;
 `;
 
-const CardLabel = styled.p`
-  color: #bbbbbb;
-  font-size: 0.5rem;
-`;
-
 const CardTitle = styled.h1`
   font-size: 1rem;
-`;
-
-const HilightCrossOutBlock = styled.div`
-  display: flex;
-  width: auto;
-  height: auto;
-  flex-direction: row;
-  align-items: center;
-`;
-
-// Hilight는 뭔지 모르겠어서 예시 스펠링 그대로 하였습니다.
-const Hilight = styled.p`
-  font-size: 1rem;
-  color: red;
-  margin-right: 0.5rem;
-`;
-
-const CrossOut = styled.p`
-  text-decoration: line-through;
-  font-size: 0.6rem;
-  color: #bbbbbb;
 `;
 
 const BottomBlock = styled.div`
@@ -108,19 +78,14 @@ const Content = styled.p`
   white-space: nowrap;
 `;
 
-const IdusCard = ({ score, content }: IdusCardProps) => {
+const IdusCardRow = ({ score, content }: IdusCardProps) => {
   return (
     <Block>
       <FlexibleImage src={img} />
       <InfoBlock>
         <LabelTitleBlock>
-          <CardLabel>CardLabel</CardLabel>
           <CardTitle>CardTitle</CardTitle>
         </LabelTitleBlock>
-        <HilightCrossOutBlock>
-          <Hilight>Hilight</Hilight>
-          <CrossOut>Cross out</CrossOut>
-        </HilightCrossOutBlock>
       </InfoBlock>
       {(score || content) && (
         <BottomBlock>
@@ -138,4 +103,4 @@ const IdusCard = ({ score, content }: IdusCardProps) => {
   );
 };
 
-export default IdusCard;
+export default IdusCardRow;

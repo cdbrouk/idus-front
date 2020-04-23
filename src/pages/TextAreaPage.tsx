@@ -8,6 +8,8 @@ const Block = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
 `;
 
 const TextAreaBlock = styled.div`
