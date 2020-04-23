@@ -19,7 +19,7 @@ const CardPage = () => {
   return (
     <Block>
       <CardBlock>
-        <IdusCard />
+        <IdusCard score={3} />
       </CardBlock>
     </Block>
   );
