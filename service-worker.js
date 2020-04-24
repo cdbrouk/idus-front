@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/idus-front/precache-manifest.167d201c617a88b2517e8bdfe5ba2aa9.js"
+  "/idus-front/precache-manifest.9500b9f35567d7974efa746db78676b5.js"
 );
 
 self.addEventListener('message', (event) => {
