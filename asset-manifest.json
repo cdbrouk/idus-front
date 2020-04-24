@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/idus-front/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/idus-front/static/js/main.8eaeba10.chunk.js",
+    "main.js.map": "/idus-front/static/js/main.8eaeba10.chunk.js.map",
+    "runtime-main.js": "/idus-front/static/js/runtime-main.b1241c83.js",
+    "runtime-main.js.map": "/idus-front/static/js/runtime-main.b1241c83.js.map",
+    "static/js/2.f1178860.chunk.js": "/idus-front/static/js/2.f1178860.chunk.js",
+    "static/js/2.f1178860.chunk.js.map": "/idus-front/static/js/2.f1178860.chunk.js.map",
+    "index.html": "/idus-front/index.html",
+    "precache-manifest.167d201c617a88b2517e8bdfe5ba2aa9.js": "/idus-front/precache-manifest.167d201c617a88b2517e8bdfe5ba2aa9.js",
+    "service-worker.js": "/idus-front/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/idus-front/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.f1178860.chunk.js.LICENSE.txt": "/idus-front/static/js/2.f1178860.chunk.js.LICENSE.txt",
+    "static/media/NanumGothic-Regular.ttf": "/idus-front/static/media/NanumGothic-Regular.3cbe9257.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b1241c83.js",
+    "static/js/2.f1178860.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.8eaeba10.chunk.js"
+  ]
+}
