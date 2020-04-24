@@ -52,3 +52,66 @@ import IdusTextArea from './modules/IdusTextArea';
 ### `readOnly` : boolean
 
 > 읽기전용 상태, Save Button 비활성화 (default: false)
+
+# 카드 UI (IdusCard, IdusCardRow)
+
+```js
+import IdusCard, { IdusCardRow } from '../modules/IdusCard';
+```
+
+default는 IdusCard(세로형)이며 Row는 별도로 import하면 됩니다.\
+default와 row의 필수값이 다르다고 생각하여 별도로 import하는 방식으로 설계했습니다.
+
+## IdusCard Props
+
+### `width`: number (px)
+
+> 가로 크기 입력 (min - 300px, default: 300px)
+
+### `label`: string, `Essential`
+
+> 필수 입력 사항, 카드 라벨
+
+### `title`: string, `Essential`
+
+> 필수 입력 사항, 카드 타이틀
+
+### `hilight`: string, `Essential`
+
+> 필수 입력 사항, 무슨 의미의 text인지는 잘 모르겠습니다..
+
+### `crossout`: string, `Essential`
+
+> 필수 입력 사항, 무슨 의미의 text인지는 잘 모르겠습니다..
+
+### `score` : number
+
+> 평점
+
+### `content` : string
+
+> 카드 내용
+
+---
+
+## IdusCardRow Props
+
+### `width`: number (px)
+
+> 가로 크기 입력 (min - 500px, default: 500px)
+
+### `title`: string, `Essential`
+
+> 필수 입력 사항, 카드 타이틀
+
+### `content`: string, `Essential`
+
+> 필수 입력 사항 , 카드 내용
+
+### `score`: number
+
+> 평점
+
+### `author`: string;
+
+> 저자

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import IdusTextArea from '../modules/IdusTextArea';
-// import IdusTextArea from '../modules/IdusTextArea/IdusTextArea';
 
 const Block = styled.div`
   display: flex;

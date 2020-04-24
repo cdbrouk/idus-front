@@ -10,9 +10,15 @@ const Block = styled.div`
   display: flex;
   width: 100%;
   height: 5rem;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
+`;
+
+const NavBlock = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  padding-right: 3rem;
 `;
 
 const PageLink = styled(Link)`
@@ -20,8 +26,13 @@ const PageLink = styled(Link)`
   margin-left: 0.5rem;
 `;
 
-const LinkItem = styled.h1`
-  font-size: 3rem;
+const Title = styled.p`
+  font-size: 1rem;
+  font-weight: bold;
+`;
+
+const LinkItem = styled.p`
+  font-size: 1rem;
   cursor: pointer;
   color: gray;
   color: ${(props: HeaderItemProps) => (props.selected ? 'black' : 'gray')};
@@ -30,14 +41,19 @@ const LinkItem = styled.h1`
 const Header = ({ location: { pathname } }: RouteComponentProps) => {
   return (
     <Block>
-      <PageLink to="/card">
-        <LinkItem selected={pathname === '/' || pathname === '/card'}>
-          Card
-        </LinkItem>
+      <PageLink to="/">
+        <Title>Idus Front-end</Title>
       </PageLink>
-      <PageLink to="/textarea">
-        <LinkItem selected={pathname === '/textarea'}>TextArea</LinkItem>
-      </PageLink>
+      <NavBlock>
+        <PageLink to="/card">
+          <LinkItem selected={pathname === '/' || pathname === '/card'}>
+            Card
+          </LinkItem>
+        </PageLink>
+        <PageLink to="/textarea">
+          <LinkItem selected={pathname === '/textarea'}>TextArea</LinkItem>
+        </PageLink>
+      </NavBlock>
     </Block>
   );
 };

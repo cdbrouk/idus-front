@@ -1,13 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IdusCardProps } from './IdusCard';
 
 const img = require('../../assets/images/idus.png'); /** Test용 이미지 */
+
+interface IdusCardRowProps {
+  score?: number;
+  content: string;
+  title: string;
+  width?: number;
+  author?: string;
+}
+
+interface BlockProps {
+  width?: number;
+}
 
 const Block = styled.div`
   display: flex;
   flex-direction: row;
-  width: 500px;
+  width: ${(props: BlockProps) => (props.width ? `${props.width}px` : '300px')};
   height: auto;
   min-width: 500px;
   border: 0.5px solid #bbbbbb;
@@ -16,7 +27,7 @@ const Block = styled.div`
 const FlexibleImage = styled.img`
   display: flex;
   position: relative;
-  width: 30%;
+  width: 35%;
   ::before {
     display: block;
     padding-top: 120%;
@@ -26,36 +37,27 @@ const FlexibleImage = styled.img`
 const InfoBlock = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 300px;
+  justify-content: center;
+  width: 65%;
   box-sizing: border-box;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   height: auto;
   min-height: 150px;
   border-bottom: 0.5px solid #bbbbbb;
 `;
 
-const LabelTitleBlock = styled.div`
-  width: auto;
-  height: auto;
-`;
-
 const CardTitle = styled.h1`
   font-size: 1rem;
-`;
-
-const BottomBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  box-sizing: border-box;
-  height: auto;
-  padding: 1rem 0.8rem;
+  font-family: consolas;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const ScoreBlock = styled.div`
   display: flex;
+  height: auto;
+  align-items: center;
 `;
 
 interface ScoreProps {
@@ -63,6 +65,7 @@ interface ScoreProps {
 }
 
 const Score = styled.div`
+  margin-top: 0.2rem;
   width: 1.3rem;
   height: 1.3rem;
   margin-right: 0.5rem;
@@ -70,35 +73,46 @@ const Score = styled.div`
   background-color: ${(props: ScoreProps) => props.color};
 `;
 
-const Content = styled.p`
-  font-family: consolas; /** NanumGothic Chrome Version 에선 ellipsis 중앙에 표시되는 문제로 폰트 변경 */
+const Author = styled.p`
+  color: #bbbbbb;
   font-size: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
-const IdusCardRow = ({ score, content }: IdusCardProps) => {
+const Content = styled.p`
+  display: -webkit-box;
+  font-family: consolas; /** NanumGothic Chrome Version 에선 ellipsis 중앙에 표시되는 문제로 폰트 변경 */
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+`;
+
+const IdusCardRow = ({
+  score,
+  content,
+  title,
+  width,
+  author,
+}: IdusCardRowProps) => {
   return (
-    <Block>
+    <Block width={width}>
       <FlexibleImage src={img} />
       <InfoBlock>
-        <LabelTitleBlock>
-          <CardTitle>CardTitle</CardTitle>
-        </LabelTitleBlock>
+        <CardTitle>{title}</CardTitle>
+        {content && <Content>{content}</Content>}
+        {score && (
+          <ScoreBlock>
+            {[1, 2, 3, 4, 5].map((number) => (
+              <Score
+                color={score >= number ? '#FF9D0C' : '#bbbbbb'}
+                key={number}
+              />
+            ))}
+            {author && <Author>{`| ${author}`}</Author>}
+          </ScoreBlock>
+        )}
       </InfoBlock>
-      {(score || content) && (
-        <BottomBlock>
-          {score && (
-            <ScoreBlock>
-              {[1, 2, 3, 4, 5].map((number) => (
-                <Score color={score >= number ? '#FF9D0C' : '#bbbbbb'} />
-              ))}
-            </ScoreBlock>
-          )}
-          {content && <Content>{content}</Content>}
-        </BottomBlock>
-      )}
     </Block>
   );
 };

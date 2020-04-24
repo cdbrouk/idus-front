@@ -3,15 +3,24 @@ import styled from 'styled-components';
 
 const img = require('../../assets/images/idus.png'); /** Test용 이미지 */
 
-export interface IdusCardProps {
+interface IdusCardProps {
   score?: number;
   content?: string;
+  width?: number;
+  label: string;
+  title: string;
+  hilight: string;
+  crossout: string;
+}
+
+interface BlockProps {
+  width?: number;
 }
 
 const Block = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: ${(props: BlockProps) => (props.width ? `${props.width}px` : '300px')};
   height: auto;
   min-width: 300px;
   border: 0.5px solid #bbbbbb;
@@ -31,7 +40,7 @@ const InfoBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 300px;
+  width: 100%;
   box-sizing: border-box;
   padding: 0.5rem;
   height: auto;
@@ -108,18 +117,26 @@ const Content = styled.p`
   white-space: nowrap;
 `;
 
-const IdusCard = ({ score, content }: IdusCardProps) => {
+const IdusCard = ({
+  score,
+  content,
+  label,
+  width,
+  title,
+  hilight,
+  crossout,
+}: IdusCardProps) => {
   return (
-    <Block>
+    <Block width={width}>
       <FlexibleImage src={img} />
       <InfoBlock>
         <LabelTitleBlock>
-          <CardLabel>CardLabel</CardLabel>
-          <CardTitle>CardTitle</CardTitle>
+          <CardLabel>{label}</CardLabel>
+          <CardTitle>{title}</CardTitle>
         </LabelTitleBlock>
         <HilightCrossOutBlock>
-          <Hilight>Hilight</Hilight>
-          <CrossOut>Cross out</CrossOut>
+          <Hilight>{hilight}</Hilight>
+          <CrossOut>{crossout}</CrossOut>
         </HilightCrossOutBlock>
       </InfoBlock>
       {(score || content) && (
@@ -127,7 +144,10 @@ const IdusCard = ({ score, content }: IdusCardProps) => {
           {score && (
             <ScoreBlock>
               {[1, 2, 3, 4, 5].map((number) => (
-                <Score color={score >= number ? '#FF9D0C' : '#bbbbbb'} />
+                <Score
+                  color={score >= number ? '#FF9D0C' : '#bbbbbb'}
+                  key={number}
+                />
               ))}
             </ScoreBlock>
           )}
