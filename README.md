@@ -22,6 +22,9 @@ yarn start
 # 입력폼 UI (IdusTextArea)
 
 Inherits textarea form
+기본 상태에서 입력을 하지 않고 있을 시 save버튼의 text가 회색으로 버튼 비활성화 \
+기본 상태에서 입력을 하고 save버튼이 아닌 다른 부분을 눌러 취소할 시 이전 텍스트 내용으로 돌아감 \
+save버튼을 누르면 text내용이 바뀜
 
 ```js
 import IdusTextArea from './modules/IdusTextArea';

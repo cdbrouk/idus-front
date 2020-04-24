@@ -95,6 +95,10 @@ const WordCount = styled.h1`
 `;
 
 // 저장버튼 Component
+interface SaveButtonProps {
+  onSave: boolean;
+}
+
 const SaveButton = styled.div`
   display: flex;
   justify-content: center;
@@ -104,23 +108,26 @@ const SaveButton = styled.div`
   background-color: white;
   font-weight: bold;
   font-size: 1.5rem;
-  color: #81d8d0;
-  cursor: pointer;
+  color: ${(props: SaveButtonProps) => (props.onSave ? '#81d8d0' : '#bbbbbb')};
+  cursor: ${(props: SaveButtonProps) => (props.onSave ? 'pointer' : 'default')};
 `;
 
 const IdusTextArea = ({
   placeholder = '텍스트를입력해주세요',
   width,
   height,
-  maxLength = 10,
+  maxLength = 500,
   disabled = false,
   readOnly = false,
 }: TextAreaProps) => {
   const [value, setValue] = useState<string>('');
+  const [prevText, setPrevText] = useState<string>('');
   const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [onSave, setOnSave] = useState<boolean>(false);
   const [wordCount, setWordCount] = useState<number>(maxLength);
 
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setOnSave(true);
     if (e.target.value.length > maxLength)
       setValue(e.target.value.substring(0, maxLength));
     else setValue(e.target.value);
@@ -129,6 +136,18 @@ const IdusTextArea = ({
   const onFocus = () => {
     if (readOnly) return;
     setIsFocus(true);
+  };
+
+  const onSaveClick = () => {
+    if (!onSave) return;
+    setPrevText(value);
+    setOnSave(false);
+  };
+
+  const onBlur = () => {
+    setIsFocus(false);
+    setOnSave(false);
+    setValue(prevText);
   };
 
   useEffect(() => {
@@ -145,13 +164,15 @@ const IdusTextArea = ({
           value={value}
           onChange={(e) => onChangeValue(e)}
           onFocus={onFocus}
-          onBlur={() => setIsFocus(false)}
+          onBlur={onBlur}
         />
         <WordCount>{wordCount}</WordCount>
       </TextAreaBlock>
 
       {isFocus && (
-        <SaveButton onMouseDown={() => console.log('do save')}>Save</SaveButton>
+        <SaveButton onSave={onSave} onMouseDown={onSaveClick}>
+          Save
+        </SaveButton>
       )}
     </Block>
   );
